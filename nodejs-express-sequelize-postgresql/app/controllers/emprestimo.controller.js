@@ -5,22 +5,27 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Emprestimo
 exports.create = (req, res) => {
+  console.log("--fifo-----------------\n");
     // Validate request
-    if (!req.body.codigo) {
+  /*  if (!req.body.codigo) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
       return;
-    }
+    }*/
+    const d = new Date();
+    var dia = d.getFullYear().toString() + '-' + d.getMonth().toString() + '-' + d.getDate().toString();
     // Create a Emprestimo
     const emprestimo = {
-      codigo: req.body.codigo,
+     // codigo: req.body.codigo,
       nro_exemplar: req.body.nro_exemplar,
       isbn: req.body.isbn,
       codigo_assoc: req.body.codigo_assoc,
-      data_emp: req.body.data_emp,
-      data_devol: req.body.data_devol,
+      data_emp: dia,
+      data_devol: dia,
     };
+    console.log("---------------------------\n");
+    console.log(dia);
     // Save Emprestimo in the database
     Emprestimo.create(emprestimo)
       .then(data => {

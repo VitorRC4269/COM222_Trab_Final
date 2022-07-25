@@ -10,7 +10,10 @@ import { TutorialDetailsComponent } from './components/tutorial-details/tutorial
 import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
 
 import { AddAssociadoComponent } from './components/add-associado/add-associado.component';
-
+import { AddFuncionarioComponent } from './components/add-funcionario/add-funcionario.component';
+import { AddPublicacaoComponent } from './components/add-publicacao/add-publicacao.component';
+import { AddExemplarComponent } from './components/add-exemplar/add-exemplar.component';
+import { AddEmprestimoComponent } from './components/add-emprestimo/add-emprestimo.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,12 @@ import { AddAssociadoComponent } from './components/add-associado/add-associado.
     TutorialDetailsComponent,
     TutorialsListComponent,
     AddAssociadoComponent,
+    AddFuncionarioComponent,
+    AddPublicacaoComponent,
+    AddPublicacaoComponent,
+    AddExemplarComponent,
+    AddEmprestimoComponent,
+    
   ],
   imports: [
     BrowserModule,

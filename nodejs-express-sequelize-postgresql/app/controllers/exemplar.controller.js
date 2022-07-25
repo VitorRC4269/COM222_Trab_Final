@@ -6,15 +6,15 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Exemplar
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.numero) {
+  /*  if (!req.body.numero) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
       return;
-    }
+    }*/
     // Create a Exemplar
     const exemplar = {
-      numero: req.body.numero,
+      //numero: req.body.numero,
       isbn: req.body.isbn,
       preco: req.body.preco,
      

@@ -1,0 +1,67 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        
+
+        
+        <div class="form-group">
+          <label for="isbn">ISBN</label>
+          <input
+            type="text"
+            class="form-control"
+            id="isbn"
+            required
+            [(ngModel)]="publicacao.isbn"
+            name="isbn"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="titulo">Titulo</label>
+          <input
+            class="form-control"
+            id="titulo"
+            required
+            [(ngModel)]="publicacao.titulo"
+            name="titulo"
+          />
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="autor">Autor</label>
+            <input
+              class="form-control"
+              id="autor"
+              required
+              [(ngModel)]="publicacao.autor"
+              name="autor"
+            />
+          </div>
+
+   
+
+          <div class="form-group">
+            <label for="editora">Editora</label>
+            <input
+              class="form-control"
+              id="editora"
+              required
+              [(ngModel)]="publicacao.editora"
+              name="editora"
+            />
+          </div>
+
+        
+  
+        <button (click)="savePublicacao()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Publicacao was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newPublicacao()">Add</button>
+      </div>
+    </div>
+  </div>
+  

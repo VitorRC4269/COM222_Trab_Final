@@ -1,0 +1,51 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        
+        <div class="form-group">
+            <label for="nro_exemplar">Nro Exemplar</label>
+            <input
+              class="form-control"
+              id="nro_exemplar"
+              required
+              [(ngModel)]="emprestimo.nro_exemplar"
+              name="nro_exemplar"
+            />
+          </div>
+
+        <div class="form-group">
+            <label for="isbn">ISBN</label>
+            <input
+              class="form-control"
+              id="isbn"
+              required
+              [(ngModel)]="emprestimo.isbn"
+              name="isbn"
+            />
+          </div>
+
+   
+
+          <div class="form-group">
+            <label for="codigo_assoc">Codigo Associado</label>
+            <input
+              class="form-control"
+              id="codigo_assoc"
+              required
+              [(ngModel)]="emprestimo.codigo_assoc"
+              name="codigo_assoc"
+            />
+          </div>
+
+        
+  
+        <button (click)="saveEmprestimo()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Emprestimo was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newEmprestimo()">Add</button>
+      </div>
+    </div>
+  </div>
+  

@@ -18,7 +18,6 @@ exports.create = (req, res) => {
       titulo: req.body.titulo,
       autor: req.body.autor,
       editora: req.body.editora,
-     
     };
     // Save Publicacao in the database
     Publicacao.create(publicacao)

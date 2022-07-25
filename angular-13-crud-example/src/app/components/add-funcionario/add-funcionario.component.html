@@ -12,7 +12,7 @@
             class="form-control"
             id="codigo"
             required
-            [(ngModel)]="associado.codigo"
+            [(ngModel)]="funcionario.codigo"
             name="codigo"
           />
         </div>
@@ -25,7 +25,7 @@
             class="form-control"
             id="nome"
             required
-            [(ngModel)]="associado.nome"
+            [(ngModel)]="funcionario.nome"
             name="nome"
           />
         </div>
@@ -36,14 +36,14 @@
             class="form-control"
             id="senha"
             required
-            [(ngModel)]="associado.senha"
+            [(ngModel)]="funcionario.senha"
             name="senha"
           />
         </div>
 
         <div class="form-group">
             <label for="funcao">Funcao</label>
-            <select class="custom-select" id="funcao" name="funcao" [(ngModel)]="associado.funcao">
+            <select class="custom-select" id="funcao" name="funcao" [(ngModel)]="funcionario.funcao">
             <option *ngFor="let cargo of cargos"> {{ cargo }} </option>
           </select>
         </div>
@@ -54,7 +54,7 @@
               class="form-control"
               id="email"
               required
-              [(ngModel)]="associado.email"
+              [(ngModel)]="funcionario.email"
               name="email"
             />
           </div>
@@ -65,7 +65,7 @@
               class="form-control"
               id="status"
               required
-              [(ngModel)]="associado.status"
+              [(ngModel)]="funcionario.status"
               name="status"
             />
           </div>
@@ -73,12 +73,12 @@
 
         
   
-        <button (click)="saveAssociado()" class="btn btn-success">Submit</button>
+        <button (click)="saveFuncionario()" class="btn btn-success">Submit</button>
       </div>
   
       <div *ngIf="submitted">
-        <h4>Associado was submitted successfully!</h4>
-        <button class="btn btn-success" (click)="newAssociado()">Add</button>
+        <h4>Funcionario was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newFuncionario()">Add</button>
       </div>
     </div>
   </div>
