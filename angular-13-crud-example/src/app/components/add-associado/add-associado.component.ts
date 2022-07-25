@@ -10,7 +10,7 @@ import { AssociadoService } from 'src/app/services/associado.service';
 export class AddAssociadoComponent implements OnInit {
 
   associado: Associado = {
-    //codigo: '',
+    //codigo: 0,
     nome: '',
     senha: '',
     endereco: '',
@@ -18,7 +18,7 @@ export class AddAssociadoComponent implements OnInit {
     status: '',
   };
   submitted = false;
-  tipo = ['Grad', 'Posgrad', 'Prof'];
+  tipos = ['Grad', 'Posgrad', 'Prof'];
   constructor(private associadoService: AssociadoService) { }
 
   ngOnInit(): void {
@@ -26,8 +26,12 @@ export class AddAssociadoComponent implements OnInit {
 
   saveAssociado(): void {
     const data = {
-      //codigo: this.associado.codigo,
-      nome: this.associado.nome
+     // codigo: this.associado.codigo,
+      nome: this.associado.nome,
+      senha: this.associado.senha,
+      endereco: this.associado.endereco,
+      email: this.associado.email,
+      status: this.associado.status,
     };
 
     this.associadoService.create(data)
@@ -43,7 +47,7 @@ export class AddAssociadoComponent implements OnInit {
   newAssociado(): void {
     this.submitted = false;
     this.associado = {
-      //codigo: '',
+     // codigo: 0,
       nome: '',
       senha: '',
       endereco: '',

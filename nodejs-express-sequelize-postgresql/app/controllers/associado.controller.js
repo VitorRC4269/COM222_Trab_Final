@@ -6,15 +6,16 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Associado
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.codigo) {
+   /* if (!req.body.codigo) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
       return;
-    }
+    }*/
     // Create a Associado
     const associado = {
-      codigo: req.body.codigo,
+   //  codigo: req.body.codigo,
+     
       nome: req.body.nome,
       senha: req.body.senha,
       endereco: req.body.endereco,

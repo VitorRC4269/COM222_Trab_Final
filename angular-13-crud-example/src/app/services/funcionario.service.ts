@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Associado } from '../models/associado.model';
+import { Funcionario } from '../models/funcionario.model';
 
-const baseUrl = 'http://localhost:8080/api/associado';
+const baseUrl = 'http://localhost:8080/api/funcionario';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AssociadoService {
+export class FuncionarioService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Associado[]> {
-    return this.http.get<Associado[]>(baseUrl);
+  getAll(): Observable<Funcionario[]> {
+    return this.http.get<Funcionario[]>(baseUrl);
   }
 
-  get(id: any): Observable<Associado> {
+  get(id: any): Observable<Funcionario> {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
@@ -36,7 +36,7 @@ export class AssociadoService {
     return this.http.delete(baseUrl);
   }
 
-  findByCodigo(codigo: any): Observable<Associado[]> {
-    return this.http.get<Associado[]>(`${baseUrl}?codigo=${codigo}`);
+  findByCodigo(codigo: any): Observable<Funcionario[]> {
+    return this.http.get<Funcionario[]>(`${baseUrl}?codigo=${codigo}`);
   }
 }

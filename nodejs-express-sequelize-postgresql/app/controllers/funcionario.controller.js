@@ -6,15 +6,15 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Funcionario
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.codigo) {
+  /*  if (!req.body.codigo) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
       return;
-    }
+    }*/
     // Create a Funcionario
     const associado = {
-      codigo: req.body.codigo,
+     // codigo: req.body.codigo,
       nome: req.body.nome,
       senha: req.body.senha,
       funcao: req.body.funcao,
