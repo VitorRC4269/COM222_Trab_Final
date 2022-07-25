@@ -1,0 +1,77 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            required
+            [(ngModel)]="associado.nome"
+            name="nome"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input
+            class="form-control"
+            id="senha"
+            required
+            [(ngModel)]="associado.senha"
+            name="senha"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="endereco">Endereco</label>
+            <input
+              class="form-control"
+              id="endereco"
+              required
+              [(ngModel)]="associado.endereco"
+              name="endereco"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              class="form-control"
+              id="email"
+              required
+              [(ngModel)]="associado.email"
+              name="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input
+              class="form-control"
+              id="status"
+              required
+              [(ngModel)]="associado.status"
+              name="status"
+            />
+          </div>
+
+
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="custom-select" id="status" name="status" [(ngModel)]="associado.status">
+            <option *ngFor="let tipo of tipos"> {{ tipo }} </option>
+          </select>
+        </div>
+  
+        <button (click)="saveAssociado()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Associado was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newAssociado()">Add</button>
+      </div>
+    </div>
+  </div>
+  
