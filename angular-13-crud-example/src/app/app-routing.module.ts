@@ -10,6 +10,7 @@ import { AddExemplarComponent } from './components/add-exemplar/add-exemplar.com
 import { AddEmprestimoComponent } from './components/add-emprestimo/add-emprestimo.component';
 import { FuncionarioLoginComponent } from './components/funcionario-login/funcionario-login.component';
 import { AssociadoLoginComponent } from './components/associado-login/associado-login.component';
+import { PublicacaoListComponent } from './components/publicacao-list/publicacao-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'associadoLogin', pathMatch: 'full' },
@@ -23,6 +24,9 @@ const routes: Routes = [
   {path: 'addEmprestimo', component: AddEmprestimoComponent},
   {path: 'funcionarioLogin', component: FuncionarioLoginComponent},
   {path: 'associadoLogin', component: AssociadoLoginComponent},
+  {path: 'publicacaoList', component: PublicacaoListComponent},
+
+  
 
 
 ];

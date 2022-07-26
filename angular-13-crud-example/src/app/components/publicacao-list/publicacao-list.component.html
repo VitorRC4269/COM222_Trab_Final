@@ -1,1 +1,49 @@
-<p>publicacao-list works!</p>
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by isbn"
+          [(ngModel)]="isbn"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchIsbn()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Publicacao List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let e of exemplares; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveExemplar(e, i)"
+        >
+          {{ e.isbn }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllExemplar()">
+        Remove All
+      </button>
+    </div>
+    
+    <!--
+    <div class="col-md-6">
+      <app-publicacao-details
+        [viewMode]="true"
+        [currentPublicacao]="currentPublicacao"
+      ></app-publicacao-details>
+    </div>
+-->
+
+  </div>
+  

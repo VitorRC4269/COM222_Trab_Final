@@ -2,6 +2,16 @@
     <div class="submit-form">
       <div *ngIf="!submitted">
         
+        <div class="form-group">
+          <label for="numero">Número</label>
+          <input
+            class="form-control"
+            id="numero"
+            required
+            [(ngModel)]="exemplar.numero"
+            name="numero"
+          />
+        </div>
 
 
         <div class="form-group">

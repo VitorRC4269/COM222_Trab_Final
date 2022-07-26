@@ -1,10 +1,10 @@
 const db = require("../models");
 const Emprestimo = db.emprestimo;
 const Op = db.Sequelize.Op;
-
-
+var moment = require('moment');
+const associadoData = require('../controllers/associado.controller');
 // Create and Save a new Emprestimo
-exports.create = (req, res) => {
+exports.create = async  (req, res) => {
   console.log("--fifo-----------------\n");
     // Validate request
   /*  if (!req.body.codigo) {
@@ -13,16 +13,27 @@ exports.create = (req, res) => {
       });
       return;
     }*/
-    const d = new Date();
-    var dia = d.getFullYear().toString() + '-' + d.getMonth().toString() + '-' + d.getDate().toString();
+    const dia = moment();
+    const associado = await associadoData.findOnebyCodigo(req.body.codigo_assoc);
+    console.log(req.body.codigo_assoc);
+    console.log(associado);
+    var data_f;
+    //var dia = d.getFullYear().toString() + '-' + d.getMonth().toString() + '-' + d.getDate().toString();
     // Create a Emprestimo
+    if(associado.status === "Grad") {
+      data_f = moment().add(7, 'd');
+    } else if(associado.status === "Posgrad") {
+      data_f = moment().add(10, 'd');
+    } else {
+      data_f = moment().add(14, 'd');
+    }
     const emprestimo = {
      // codigo: req.body.codigo,
       nro_exemplar: req.body.nro_exemplar,
       isbn: req.body.isbn,
       codigo_assoc: req.body.codigo_assoc,
       data_emp: dia,
-      data_devol: dia,
+      data_devol: data_f,
     };
     console.log("---------------------------\n");
     console.log(dia);

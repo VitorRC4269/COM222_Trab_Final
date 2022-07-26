@@ -6,15 +6,15 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Exemplar
 exports.create = (req, res) => {
     // Validate request
-  /*  if (!req.body.numero) {
+    if (!req.body.numero) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
       return;
-    }*/
+    }
     // Create a Exemplar
     const exemplar = {
-      //numero: req.body.numero,
+      numero: req.body.numero,
       isbn: req.body.isbn,
       preco: req.body.preco,
      
@@ -36,11 +36,12 @@ exports.create = (req, res) => {
 
 // Retrieve all Exemplar from the database.
 exports.findAll = (req, res) => {
-  const numero = req.query.numero;
-  var condition = numero ? { numero: { [Op.iLike]: `%${numero}%` } } : null;
-  Exemplar.findAll({ where: condition })
+  const isbn = req.query.isbn;
+  //var condition = isbn ? { isbn: { [Op.iLike]: `%${isbn}%` } } : null;
+  Exemplar.findAll({ where: {isbn }, raw: true },)
     .then(data => {
       res.send(data);
+      console.log(data);
     })
     .catch(err => {
       res.status(500).send({
@@ -147,6 +148,23 @@ exports.findAllPublished = (req, res) => {
     Exemplar.findAll({ where: { published: true } })
       .then(data => {
         res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving exemplar."
+        });
+      });
+  };
+
+
+  exports.findIsbn = (req, res) => {
+    const isbn = req.query.isbn;
+    //var condition = isbn ? { isbn: { [Op.iLike]: `%${isbn}%` } } : null;
+    Exemplar.findAll({ where: {isbn }, raw: true },)
+      .then(data => {
+        res.send(data);
+        console.log(data);
       })
       .catch(err => {
         res.status(500).send({

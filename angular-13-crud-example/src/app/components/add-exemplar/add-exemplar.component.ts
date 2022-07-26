@@ -12,7 +12,7 @@ export class AddExemplarComponent implements OnInit {
   exemplar: Exemplar = {
 
 
-    //numero: 0,
+    numero: 1,
     isbn: '',
     
    
@@ -28,7 +28,7 @@ export class AddExemplarComponent implements OnInit {
   saveExemplar(): void {
     const data = {
       
-      //numero: this.exemplar.numero,
+      numero: this.exemplar.numero,
       isbn: this.exemplar.isbn,
       
      
@@ -49,7 +49,7 @@ export class AddExemplarComponent implements OnInit {
   newExemplar(): void {
     this.submitted = false;
     this.exemplar = {
-     // numero: 0,
+      numero: 1,
       isbn: '',
       preco: 0,
       

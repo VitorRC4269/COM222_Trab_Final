@@ -16,9 +16,9 @@ export class ExemplarService {
     return this.http.get<Exemplar[]>(baseUrl);
   }
 
-  get(id: any): Observable<Exemplar> {
+  /*get(id: any): Observable<Exemplar> {
     return this.http.get(`${baseUrl}/${id}`);
-  }
+  }*/
 
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
@@ -38,5 +38,9 @@ export class ExemplarService {
 
   findByNumero(numero: any): Observable<Exemplar[]> {
     return this.http.get<Exemplar[]>(`${baseUrl}?numero=${numero}`);
+  }
+
+  findByIsbn(isbn: any): Observable<Exemplar[]> {
+    return this.http.get<Exemplar[]>(`${baseUrl}/isbn?isbn=${isbn}`);
   }
 }

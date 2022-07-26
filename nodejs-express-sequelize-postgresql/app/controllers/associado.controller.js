@@ -38,7 +38,7 @@ exports.create = (req, res) => {
 
 
 // Retrieve all Associado from the database.
-exports.findAll = (req, res) => {
+exports.findAll = async (req, res) => {
   const codigo = req.query.codigo;
   var condition = codigo ? { codigo: { [Op.iLike]: `%${codigo}%` } } : null;
   Associado.findAll({ where: condition })
@@ -155,6 +155,47 @@ exports.findAllPublished = (req, res) => {
         res.status(500).send({
           message:
             err.message || "Some error occurred while retrieving associado."
+        });
+      });
+  };
+
+
+  exports.findAllbyCodigo = async (cod, res) => {
+    const codigo = cod;
+    var condition = codigo ? { codigo: { [Op.iLike]: `%${codigo}%` } } : null;
+    Associado.findAll({ where: condition })
+      .then(data => {
+
+        console.log(data);
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving associado."
+        });
+      });
+  };
+
+  exports.findOnebyCodigo = async (cod, res) => {
+    const codigo = cod;
+    console.log("\ncod: ");
+    console.log(codigo);
+    Associado.findOne({ where: { codigo }, raw: true })
+      .then(data => {
+        if (data) {
+          console.log(data);
+          res.send(data);
+        } else {
+          console.log('penis');
+          res.status(404).send({
+            message: `Cannot find Associado with codigo=${codigo}.`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error retrieving Associado with codigo=" + codigo
         });
       });
   };
