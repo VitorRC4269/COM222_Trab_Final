@@ -5,34 +5,34 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Funcionario
 exports.create = (req, res) => {
-    // Validate request
+  // Validate request
   /*  if (!req.body.codigo) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
       return;
     }*/
-    // Create a Funcionario
-    const associado = {
-     // codigo: req.body.codigo,
-      nome: req.body.nome,
-      senha: req.body.senha,
-      funcao: req.body.funcao,
-      email: req.body.email,
-     
-    };
-    // Save Funcionario in the database
-    Funcionario.create(associado)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the Funcionario."
-        });
-      });
+  // Create a Funcionario
+  const associado = {
+    // codigo: req.body.codigo,
+    nome: req.body.nome,
+    senha: req.body.senha,
+    funcao: req.body.funcao,
+    email: req.body.email,
+
   };
+  // Save Funcionario in the database
+  Funcionario.create(associado)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Funcionario."
+      });
+    });
+};
 
 
 
@@ -56,23 +56,23 @@ exports.findAll = (req, res) => {
 
 // Find a single Funcionario with an codigo
 exports.findOne = (req, res) => {
-    const codigo = req.params.codigo;
-    Funcionario.findByPk(codigo)
-      .then(data => {
-        if (data) {
-          res.send(data);
-        } else {
-          res.status(404).send({
-            message: `Cannot find Funcionario with codigo=${codigo}.`
-          });
-        }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error retrieving Funcionario with codigo=" + codigo
+  const codigo = req.params.codigo;
+  Funcionario.findByPk(codigo)
+    .then(data => {
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          message: `Cannot find Funcionario with codigo=${codigo}.`
         });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving Funcionario with codigo=" + codigo
       });
-  };
+    });
+};
 
 
 
@@ -103,27 +103,27 @@ exports.update = (req, res) => {
 
 // Delete a Funcionario with the specified codigo in the request
 exports.delete = (req, res) => {
-    const codigo = req.params.codigo;
-    Funcionario.destroy({
-      where: { codigo: codigo }
-    })
-      .then(num => {
-        if (num == 1) {
-          res.send({
-            message: "Funcionario was deleted successfully!"
-          });
-        } else {
-          res.send({
-            message: `Cannot delete Funcionario with codigo=${codigo}. Maybe Funcionario was not found!`
-          });
-        }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Could not delete Funcionario with codigo=" + codigo
+  const codigo = req.params.codigo;
+  Funcionario.destroy({
+    where: { codigo: codigo }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Funcionario was deleted successfully!"
         });
+      } else {
+        res.send({
+          message: `Cannot delete Funcionario with codigo=${codigo}. Maybe Funcionario was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Funcionario with codigo=" + codigo
       });
-  };
+    });
+};
 
 
 // Delete all Funcionario from the database.
@@ -146,14 +146,33 @@ exports.deleteAll = (req, res) => {
 
 // Find all published Funcionario
 exports.findAllPublished = (req, res) => {
-    Funcionario.findAll({ where: { published: true } })
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving associado."
-        });
+  Funcionario.findAll({ where: { published: true } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving associado."
       });
-  };
+    });
+};
+
+
+exports.login = (req, res) => {
+const data = req.body;
+console.log(data);
+  Funcionario.findOne({ where: { codigo: data.codigo }, raw: true })
+    .then(funcionario => {
+      if (!funcionario) throw new Error('Erro no login')
+      if (data.senha !== funcionario.senha) throw new Error('Erro no login');
+      console.log(funcionario.senha);
+      res.send(funcionario);
+    })
+
+
+    ;
+
+
+
+}

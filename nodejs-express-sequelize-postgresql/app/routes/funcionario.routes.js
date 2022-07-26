@@ -15,5 +15,14 @@ module.exports = app => {
     router.delete("/:id", funcionario.delete);
     // Create a new Funcionario
     router.delete("/", funcionario.deleteAll);
+
+
+    router.post("/login", funcionario.login);
+
     app.use('/api/funcionario', router);
+
+    
+
+
+
   };

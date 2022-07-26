@@ -8,9 +8,11 @@ import { AddFuncionarioComponent } from './components/add-funcionario/add-funcio
 import { AddPublicacaoComponent } from './components/add-publicacao/add-publicacao.component';
 import { AddExemplarComponent } from './components/add-exemplar/add-exemplar.component';
 import { AddEmprestimoComponent } from './components/add-emprestimo/add-emprestimo.component';
+import { FuncionarioLoginComponent } from './components/funcionario-login/funcionario-login.component';
+import { AssociadoLoginComponent } from './components/associado-login/associado-login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tutorials', pathMatch: 'full' },
+  { path: '', redirectTo: 'associadoLogin', pathMatch: 'full' },
   { path: 'tutorials', component: TutorialsListComponent },
   { path: 'tutorials/:id', component: TutorialDetailsComponent },
   { path: 'add', component: AddTutorialComponent },
@@ -19,6 +21,10 @@ const routes: Routes = [
   {path: 'addPublicacao', component: AddPublicacaoComponent},
   {path: 'addExemplar', component: AddExemplarComponent},
   {path: 'addEmprestimo', component: AddEmprestimoComponent},
+  {path: 'funcionarioLogin', component: FuncionarioLoginComponent},
+  {path: 'associadoLogin', component: AssociadoLoginComponent},
+
+
 ];
 
 @NgModule({

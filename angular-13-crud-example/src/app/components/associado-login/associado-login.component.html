@@ -1,0 +1,38 @@
+
+
+<div>
+    <div class="submit-form">
+      <h1>Login Associado</h1>
+      <div *ngIf="!submitted">
+  
+  
+  
+  
+        <div class="form-group">
+          <label for="codigo">Codigo</label>
+          <input type="text" class="form-control" id="codigo" required [(ngModel)]="associado.codigo" name="codigo" />
+        </div>
+  
+  
+  
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input class="form-control" id="senha" required [(ngModel)]="associado.senha" name="senha" />
+        </div>
+  
+  
+  
+        <button (click)="loginAssociado()" class="btn btn-success">Login</button>
+      </div>
+      <!--
+      <div *ngIf="submitted">
+        <h4>Associado was logged successfully!</h4>
+        <button class="btn btn-success" (click)="newAssociado()">Add</button>
+      </div>
+  
+    -->
+  
+    </div>
+  </div>
+  
+

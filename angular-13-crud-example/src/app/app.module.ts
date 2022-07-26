@@ -14,6 +14,9 @@ import { AddFuncionarioComponent } from './components/add-funcionario/add-funcio
 import { AddPublicacaoComponent } from './components/add-publicacao/add-publicacao.component';
 import { AddExemplarComponent } from './components/add-exemplar/add-exemplar.component';
 import { AddEmprestimoComponent } from './components/add-emprestimo/add-emprestimo.component';
+import { PublicacaoListComponent } from './components/publicacao-list/publicacao-list.component';
+import { FuncionarioLoginComponent } from './components/funcionario-login/funcionario-login.component';
+import { AssociadoLoginComponent } from './components/associado-login/associado-login.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { AddEmprestimoComponent } from './components/add-emprestimo/add-empresti
     AddPublicacaoComponent,
     AddExemplarComponent,
     AddEmprestimoComponent,
+    PublicacaoListComponent,
+    FuncionarioLoginComponent,
+    AssociadoLoginComponent,
     
   ],
   imports: [

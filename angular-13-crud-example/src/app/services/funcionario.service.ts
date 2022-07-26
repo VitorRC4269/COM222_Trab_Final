@@ -39,4 +39,14 @@ export class FuncionarioService {
   findByCodigo(codigo: any): Observable<Funcionario[]> {
     return this.http.get<Funcionario[]>(`${baseUrl}?codigo=${codigo}`);
   }
+
+
+  login(data: any): Observable<any> {
+    //let url = `${this.baseUri}/funcionarios/login/`;
+    return this.http.post(`${baseUrl}/login`, data)
+     
+  }
+
+
+
 }
