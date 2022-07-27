@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Funcionario } from 'src/app/models/funcionario.model';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-funcionario',
   templateUrl: './add-funcionario.component.html',
@@ -19,7 +19,7 @@ export class AddFuncionarioComponent implements OnInit {
   };
   submitted = false;
  cargos = ['gerente', 'funcionario'];
-  constructor(private funcionarioService: FuncionarioService) { }
+  constructor(private funcionarioService: FuncionarioService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -34,14 +34,28 @@ export class AddFuncionarioComponent implements OnInit {
       
     };
 
-    this.funcionarioService.create(data)
+    this.funcionarioService.createFuncionario(data).subscribe(
+      (res: any) => {
+        if (res) {
+          window.alert('Cadastro realizado com sucesso!');
+          console.log('Funcionário criado com sucesso!');
+          this.router.navigate([''])
+        }
+        else {
+          window.alert('Erro ao cadastrar funcionário.');
+        }
+      }, (error) => {
+        console.log(error);
+      });
+
+ /*   this.funcionarioService.create(data)
       .subscribe({
         next: (res) => {
           console.log(res);
           this.submitted = true;
         },
         error: (e) => console.error(e)
-      });
+      });*/
   }
 
   newFuncionario(): void {

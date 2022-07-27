@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Emprestimo } from '../models/emprestimo.model';
+
 
 const baseUrl = 'http://localhost:8080/api/emprestimo';
 
@@ -9,34 +11,47 @@ const baseUrl = 'http://localhost:8080/api/emprestimo';
   providedIn: 'root'
 })
 export class EmprestimoService {
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Emprestimo[]> {
-    return this.http.get<Emprestimo[]>(baseUrl);
+  createEmprestimo(data: any): Observable<any> {
+   // let url = `${this.baseUri}/emprestimos`;
+    return this.http.post(baseUrl, data)
+      .pipe(
+        catchError(this.errorHandler)
+      )
   }
 
-  get(id: any): Observable<Emprestimo> {
-    return this.http.get(`${baseUrl}/${id}`);
+
+  
+  findAtrasados(): Observable<any> {
+   // let url = `${this.baseUri}/emprestimosAtrasados`;
+    return this.http.get(`${baseUrl}/atrasados`, {headers: this.headers}).pipe(
+      map((res: any) => {
+        return res || {}
+      }),
+      catchError(this.errorHandler)
+    )
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+  devolverExemplar(data: any): Observable<any> {
+    //let url = `${this.baseUri}/devolverExemplar`;
+    return this.http.post(`${baseUrl}/devolver`, data)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+  
+  
+  errorHandler(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
   }
 
-  update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
-  }
-
-  delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
-  }
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
-  }
-
-  findByCodigo_assoc(codigo_assoc: any): Observable<Emprestimo[]> {
-    return this.http.get<Emprestimo[]>(`${baseUrl}?codigo_assoc=${codigo_assoc}`);
-  }
 }

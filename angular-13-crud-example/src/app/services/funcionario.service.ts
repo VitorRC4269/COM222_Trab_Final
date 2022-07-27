@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Funcionario } from '../models/funcionario.model';
 
 const baseUrl = 'http://localhost:8080/api/funcionario';
@@ -11,7 +12,7 @@ const baseUrl = 'http://localhost:8080/api/funcionario';
 export class FuncionarioService {
 
   constructor(private http: HttpClient) { }
-
+/*
   getAll(): Observable<Funcionario[]> {
     return this.http.get<Funcionario[]>(baseUrl);
   }
@@ -39,13 +40,36 @@ export class FuncionarioService {
   findByCodigo(codigo: any): Observable<Funcionario[]> {
     return this.http.get<Funcionario[]>(`${baseUrl}?codigo=${codigo}`);
   }
+*/
 
+createFuncionario(data: any): Observable<any> {
+  //let url = `${this.baseUri}/funcionarios`;
+  return this.http.post(`${baseUrl}`, data)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+}
 
   login(data: any): Observable<any> {
     //let url = `${this.baseUri}/funcionarios/login/`;
-    return this.http.post(`${baseUrl}/login`, data)
+    return this.http.post(`${baseUrl}/login`, data).pipe(
+      catchError(this.errorHandler)
+    )
      
   }
+
+  errorHandler(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
+  }
+
+  
+  
 
 
 

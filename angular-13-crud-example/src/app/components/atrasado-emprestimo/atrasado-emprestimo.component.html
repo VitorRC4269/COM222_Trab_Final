@@ -1,0 +1,87 @@
+<div class="list row">
+    
+    <!--
+    <div class="col-md-8">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by isbn"
+            [(ngModel)]="isbn"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="searchIsbn()"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+  -->
+  
+  
+      <div class="col-md-6">
+        <h4>Emprestimo List</h4>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let e of emprestimos; let i = index"
+            [class.active]="i == currentIndex"
+            (click)="setActiveEmprestimo(e, i)"
+          >
+            {{ e.isbn }}
+          </li>
+        </ul>
+    
+       <!--  <button class="m-3 btn btn-sm btn-danger" (click)="removeAllExemplar()">
+          Remove All
+        </button>-->
+      </div>
+      
+      <!--
+      <div class="col-md-6">
+        <app-emprestimo-details
+          [viewMode]="true"
+          [currentEmprestimo]="currentEmprestimo"
+        ></app-emprestimo-details>
+      </div>
+  -->
+  
+  
+  
+  <div class="col-md-6">
+    <div *ngIf="currentEmprestimo">
+      <h4>Publicação</h4>
+      <div>
+        <label><strong>Nº Exemplar:</strong></label> {{ currentEmprestimo.codigo }}
+      </div>
+      <div>
+          <label><strong>Isbn:</strong></label>
+          {{ currentEmprestimo.isbn }}
+      </div>
+      <div>
+          <label><strong>Código do associado:</strong></label>
+          {{ currentEmprestimo.codigo_assoc }}
+      </div>
+      <div>
+          <label><strong>Data de empréstimo:</strong></label>
+          {{ currentEmprestimo.data_emp }}
+      </div>
+      <div>
+        <label><strong>Data para devolução:</strong></label>
+        {{ currentEmprestimo.data_devol }}
+    </div>
+    </div>
+  
+    <div *ngIf="!currentEmprestimo">
+      <br />
+      <p>Clique em uma publicação...</p>
+    </div>
+  </div>
+  
+  
+    </div>
+    

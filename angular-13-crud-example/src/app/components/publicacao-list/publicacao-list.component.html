@@ -1,5 +1,7 @@
 <div class="list row">
-    <div class="col-md-8">
+    
+  
+  <div class="col-md-8">
       <div class="input-group mb-3">
         <input
           type="text"
@@ -11,15 +13,18 @@
           <button
             class="btn btn-outline-secondary"
             type="button"
-            (click)="searchIsbn()"
+            (click)="retrieveExemplar()"
           >
             Search
           </button>
         </div>
       </div>
     </div>
+
+
+
     <div class="col-md-6">
-      <h4>Publicacao List</h4>
+      <h4>Exemplar List</h4>
       <ul class="list-group">
         <li
           class="list-group-item"
@@ -31,9 +36,9 @@
         </li>
       </ul>
   
-      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllExemplar()">
+     <!--  <button class="m-3 btn btn-sm btn-danger" (click)="removeAllExemplar()">
         Remove All
-      </button>
+      </button>-->
     </div>
     
     <!--
@@ -44,6 +49,35 @@
       ></app-publicacao-details>
     </div>
 -->
+
+
+
+<div class="col-md-6">
+  <div *ngIf="currentExemplar">
+    <h4>Publicação</h4>
+   
+
+    <div>
+      <label><strong>Número:</strong></label>
+      {{ currentExemplar.numero }}
+  </div>
+    <div>
+        <label><strong>Isbn:</strong></label>
+        {{ currentExemplar.isbn }}
+    </div>
+  
+    <div>
+        <label><strong>Preço:</strong></label>
+        {{ currentExemplar.preco }}
+    </div>
+  </div>
+
+  <div *ngIf="!currentExemplar">
+    <br />
+    <p>Clique em uma publicação...</p>
+  </div>
+</div>
+
 
   </div>
   

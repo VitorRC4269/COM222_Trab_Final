@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Associado } from 'src/app/models/associado.model';
 import { AssociadoService } from 'src/app/services/associado.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-associado',
   templateUrl: './add-associado.component.html',
@@ -19,7 +19,7 @@ export class AddAssociadoComponent implements OnInit {
   };
   submitted = false;
   tipos = ['Grad', 'Posgrad', 'Prof'];
-  constructor(private associadoService: AssociadoService) { }
+  constructor(private associadoService: AssociadoService, private router: Router,) { }
 
   ngOnInit(): void {
   }
@@ -34,14 +34,28 @@ export class AddAssociadoComponent implements OnInit {
       status: this.associado.status,
     };
 
-    this.associadoService.create(data)
+    this.associadoService.createAssociado(data).subscribe(
+      (res: any) => {
+        if (res) {
+          window.alert('Cadastro realizado com sucesso!');
+          console.log('Associado cadastrado com sucesso!');
+          this.router.navigate([''])
+        }
+        else {
+          window.alert('Erro ao cadastrar associado.');
+        }
+      }, (error) => {
+        console.log(error);
+      });
+
+   /* this.associadoService.create(data)
       .subscribe({
         next: (res) => {
           console.log(res);
           this.submitted = true;
         },
         error: (e) => console.error(e)
-      });
+      });*/
   }
 
   newAssociado(): void {

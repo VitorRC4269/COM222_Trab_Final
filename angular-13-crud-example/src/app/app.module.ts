@@ -17,6 +17,12 @@ import { AddEmprestimoComponent } from './components/add-emprestimo/add-empresti
 import { PublicacaoListComponent } from './components/publicacao-list/publicacao-list.component';
 import { FuncionarioLoginComponent } from './components/funcionario-login/funcionario-login.component';
 import { AssociadoLoginComponent } from './components/associado-login/associado-login.component';
+import { AddReservaComponent } from './components/add-reserva/add-reserva.component';
+import { DevolverEmprestimoComponent } from './components/devolver-emprestimo/devolver-emprestimo.component';
+import { AnularReservaComponent } from './components/anular-reserva/anular-reserva.component';
+import { AtrasadoEmprestimoComponent } from './components/atrasado-emprestimo/atrasado-emprestimo.component';
+import { AssociadoLogoutComponent } from './components/associado-logout/associado-logout.component';
+import { FuncionarioLogoutComponent } from './components/funcionario-logout/funcionario-logout.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +39,12 @@ import { AssociadoLoginComponent } from './components/associado-login/associado-
     PublicacaoListComponent,
     FuncionarioLoginComponent,
     AssociadoLoginComponent,
+    AddReservaComponent,
+    DevolverEmprestimoComponent,
+    AnularReservaComponent,
+    AtrasadoEmprestimoComponent,
+    AssociadoLogoutComponent,
+    FuncionarioLogoutComponent,
     
   ],
   imports: [

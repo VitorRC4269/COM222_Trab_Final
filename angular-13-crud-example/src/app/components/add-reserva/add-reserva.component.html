@@ -1,0 +1,46 @@
+
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        
+      
+
+        <div class="form-group">
+            <label for="isbn">ISBN</label>
+            <input
+              class="form-control"
+              id="isbn"
+              required
+              [(ngModel)]="reserva.isbn"
+              name="isbn"
+            />
+          </div>
+
+   
+
+          <div class="form-group">
+            <label for="codigo_assoc">Codigo Associado</label>
+            <input
+              class="form-control"
+              id="codigo_assoc"
+              required
+              [(ngModel)]="reserva.codigo_assoc"
+              name="codigo_assoc"
+            />
+          </div>
+
+        
+  
+        <button (click)="saveReserva()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <!--
+      <div *ngIf="submitted">
+        <h4>Reserva was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newReserva()">Add</button>
+      </div>
+-->
+
+    </div>
+  </div>
+  

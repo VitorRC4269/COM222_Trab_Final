@@ -10,6 +10,7 @@ module.exports = (sequelize, Sequelize) => {
         isbn: {
             type: Sequelize.STRING(12),
             allowNull: false,
+            primaryKey: true,
         },
         preco: {
             type: Sequelize.FLOAT,

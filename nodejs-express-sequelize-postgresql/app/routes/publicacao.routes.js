@@ -1,28 +1,32 @@
 module.exports = app => {
-    const publicacao = require("../controllers/publicacao.controller.js");
+    const publicacaoS = require("../service/publicacao.service.js");
     var router = require("express").Router();
     
     // Create a new Publicacao
-    router.post("/", publicacao.create);
     
-    // Retrieve all Publicacao
-    router.get("/", publicacao.findAll);
+    router.post("/", async (req, res, next) => {
+      const data = req.body
+      try {
+        const novaPublicacao = await publicacaoS.createPublicacao(data)
+        
+        res.status(201).json(novaPublicacao)
+      } catch (e) {
+        res.status(400).json({error: e})
     
-    // Retrieve all published Publicacao
-    router.get("/published", publicacao.findAllPublished);
-   
-    // Retrieve a single Publicacao with id
-    router.get("/:id", publicacao.findOne);
+      }
+    })
     
-    // Update a Publicacao with id
-    router.put("/:id", publicacao.update);
+        // Retrieve all Publicacao
+    router.get("/", async (req, res, next) => {
+      try {
+        const publicacoes = await publicacaoS.findAllPublicacoes()
+        
+        res.status(201).json(publicacoes)
+      } catch (e) {
+        res.status(400).send("Não foi possível encontrar as publicações")
     
-    // Delete a Publicacao with id
-    router.delete("/:id", publicacao.delete);
-    // Create a new Publicacao
-    router.delete("/", publicacao.deleteAll);
-
-    router.get("/isbn", publicacao.findAll);
+      }
+    })
 
     app.use('/api/publicacao', router);
   };

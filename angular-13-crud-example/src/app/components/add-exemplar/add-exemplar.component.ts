@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Exemplar } from 'src/app/models/exemplar.model';
 import { ExemplarService } from 'src/app/services/exemplar.service';
 
@@ -20,7 +21,7 @@ export class AddExemplarComponent implements OnInit {
     
   };
   submitted = false;
-  constructor(private exemplarService: ExemplarService) { }
+  constructor(private exemplarService: ExemplarService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -35,7 +36,7 @@ export class AddExemplarComponent implements OnInit {
       preco: this.exemplar.preco,
       
     };
-
+/*
     this.exemplarService.create(data)
       .subscribe({
         next: (res) => {
@@ -44,6 +45,23 @@ export class AddExemplarComponent implements OnInit {
         },
         error: (e) => console.error(e)
       });
+*/
+this.exemplarService.createExemplar(data).subscribe(
+  (res: any) => {
+    if (res) {
+      window.alert('Cadastro realizado com sucesso!');
+      console.log('exemplar criado com sucesso!');
+      this.router.navigate([''])
+    }
+    else {
+      window.alert('Erro ao cadastrar exemplar.');
+    }
+  }, (error) => {
+    console.log("plimp");
+    console.log(error);
+  });
+
+
   }
 
   newExemplar(): void {

@@ -10,6 +10,7 @@ export class AppComponent {
   codigoAtor = localStorage.getItem('codigoAtor');
   nome = localStorage.getItem('nomeAtor');
   funcao = localStorage.getItem('funcao');
+  associado = localStorage.getItem('associado');
 
 }
 
